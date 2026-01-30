@@ -1,50 +1,50 @@
-public class BankService { 
- 
+public class BinarySearchExample {
+
     
-    static class BankAccount { 
-        private double balance; 
- 
-        public BankAccount(double initialBalance) { 
-            if (initialBalance < 0) { 
-                throw new IllegalArgumentException("Initial balance cannot be negative"); 
-            } 
-            this.balance = initialBalance; 
-        } 
- 
-        public void deposit(double amount) { 
-            if (amount <= 0) { 
-                throw new IllegalArgumentException("Deposit must be positive"); 
-            } 
-            balance += amount; 
-        } 
- 
-        public void withdraw(double amount) { 
-            if (amount <= 0 || amount > balance) { 
-                throw new IllegalArgumentException("Invalid withdrawal"); 
-            } 
-            balance -= amount; 
-        } 
- 
-        public double getBalance() { 
-            return balance; 
-        } 
-    } 
- 
-    
-    public static void main(String[] args) { 
-         
-        BankAccount acc = new BankAccount(5000); 
-         
-        System.out.println("Initial Balance: " + acc.getBalance()); 
- 
+    public static int binarySearch(int[] arr, int key) {
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            
+            if (arr[mid] == key) {
+                return mid;
+            }
+
+            
+            if (arr[mid] < key) {
+                left = mid + 1;
+            }
+            
+            else {
+                right = mid - 1;
+            }
+        }
+
         
-        acc.deposit(700); 
-        System.out.println("Balance after deposit of 500: " + acc.getBalance()); 
- 
-        acc.withdraw(100); 
-        System.out.println("Balance after withdrawal of 300: " + acc.getBalance()); 
- 
+        return -1;
+    }
+
+    public static void main(String[] args) {
+
         
-        System.out.println("Final Balance: " + acc.getBalance()); 
-    } 
-} 
+        int[] numbers = {10, 20, 30, 40, 50, 60, 70};
+
+        int key = 40;
+
+        System.out.println("Array Elements:");
+        for (int num : numbers) {
+            System.out.print(num + " ");
+        }
+
+        int result = binarySearch(numbers, key);
+
+        if (result == -1) {
+            System.out.println("\nElement not found");
+        } else {
+            System.out.println("\nElement found at index: " + result);
+        }
+    }
+}
